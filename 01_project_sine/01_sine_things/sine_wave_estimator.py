@@ -1,10 +1,12 @@
 import tensorflow as tf
 from tensorflow import keras
 
-working_computer = True #which computer is in use
+working_computer = False #which computer is in use
 
 if working_computer:
     path = 'C:\\Users\\u29j72\\Desktop\\private\\02_szakma\\01_programozas\\python\\01_random_things\\01_sine_things\\'
+else:
+    path = 'C:\\Users\\Donát\\Documents\\GitHub\\MachineLearning\\01_project_sine\\01_sine_things\\'
 
 training_data_x = []
 training_data_y = []
@@ -53,9 +55,9 @@ model = tf.keras.Sequential([
 model.compile(optimizer='adam', loss='mean_squared_error')
 
 # Train the model
-history = model.fit(training_data_x, training_data_y, epochs=100, validation_data=(validation_data_x, validation_data_y))
+regression_model = model.fit(training_data_x, training_data_y, epochs=100, validation_data=(validation_data_x, validation_data_y))
 
-val_loss = history.history['val_loss']
+val_loss = regression_model.history['val_loss']
 print("Validation loss:", val_loss[-1])
 
 # Evaluate the model on the test dataset
