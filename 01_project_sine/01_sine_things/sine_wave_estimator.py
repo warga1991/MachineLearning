@@ -1,9 +1,9 @@
 import tensorflow as tf
 from tensorflow import keras
 
-working_computer = False #which computer is in use
+is_working_computer = True #which computer is in use
 
-if working_computer:
+if is_working_computer:
     path = 'C:\\Users\\u29j72\\Desktop\\private\\02_szakma\\01_programozas\\python\\01_random_things\\01_sine_things\\'
 else:
     path = 'C:\\Users\\Donát\\Documents\\GitHub\\MachineLearning\\01_project_sine\\01_sine_things\\'
@@ -38,12 +38,6 @@ for data_set_index, data_purpose in enumerate(['training_data.txt', 'validation_
         test_data_x = temp_x
         test_data_y = temp_y
 
-"""for id, data_set in enumerate([[training_data_x, training_data_y], [validation_data_x, validation_data_y], [test_data_x, test_data_y]]):
-    print(id)
-    for i, data in enumerate(data_set[0]):
-        print(data_set[0][i], data_set[1][i])"""
-
-# Define the model architecture
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(units=16, activation='relu', input_shape=[1]),
     tf.keras.layers.Dense(units=32, activation='relu'),
@@ -51,20 +45,16 @@ model = tf.keras.Sequential([
     tf.keras.layers.Dense(units=1)
 ])
 
-# Compile the model
 model.compile(optimizer='adam', loss='mean_squared_error')
 
-# Train the model
 regression_model = model.fit(training_data_x, training_data_y, epochs=100, validation_data=(validation_data_x, validation_data_y))
 
 val_loss = regression_model.history['val_loss']
 print("Validation loss:", val_loss[-1])
 
-# Evaluate the model on the test dataset
 test_loss = model.evaluate(test_data_x, test_data_y)
 print("Test loss:", test_loss)
 
-# Estimate y for the given x values in the test dataset
 test_predict_x = [0.8987478918617728, 0.9251636496933648, 0.8463435694934305]
 predicted_y = model.predict(test_predict_x)  # Predicted target values
 
