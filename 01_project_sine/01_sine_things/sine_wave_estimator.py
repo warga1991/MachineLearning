@@ -47,7 +47,7 @@ model = tf.keras.Sequential([
 
 model.compile(optimizer='adam', loss='mean_squared_error')
 
-regression_model = model.fit(training_data_x, training_data_y, epochs=100, validation_data=(validation_data_x, validation_data_y))
+regression_model = model.fit(training_data_x, training_data_y, epochs=100, batch_size=10, validation_data=(validation_data_x, validation_data_y))
 
 val_loss = regression_model.history['val_loss']
 print("Validation loss:", val_loss[-1])
