@@ -1,13 +1,10 @@
 import tensorflow as tf
 from tensorflow import keras
 import matplotlib.pyplot as plt
+import os
 
-is_working_computer = True #which computer is in use
-
-if is_working_computer:
-    path = 'C:\\Users\\u29j72\\Desktop\\private\\02_szakma\\01_programozas\\python\\01_random_things\\01_sine_things\\'
-else:
-    path = 'C:\\Users\\Donát\\Documents\\GitHub\\MachineLearning\\01_project_sine\\01_sine_things\\'
+path = os.path.dirname(__file__)
+path += '\\'
 
 training_x = []
 training_y = []
